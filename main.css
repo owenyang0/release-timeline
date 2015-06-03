@@ -1,0 +1,25 @@
+.main{
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis .release-desc {
+  /*font-size: 14px;*/
+}
+
+.axis line,
+.axis path {
+  /*fill: none;*/
+  stroke: #27A9E0;
+  shape-rendering: crispEdges;
+}
+
+.x-ticks line,
+.x-ticks path {
+  shape-rendering: auto;
+  fill-opacity: 0.5;
+}
