@@ -15,6 +15,11 @@
 .axis path {
   stroke: #27A9E0;
   fill-opacity: 0.5;
+  fill: none;
+}
+
+.axis .water-drop {
+  fill: auto;
 }
 
 .x-ticks line,

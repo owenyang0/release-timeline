@@ -1,9 +1,9 @@
-var margin = {top: 200, right: 30, bottom: 50, left: 30},
+var margin = {top: 300, right: 50, bottom: 50, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var t1 = new Date(2015, 0, 1),
-    t2 = new Date(2016, 0, 1),
+    t2 = new Date(2015, 3, 1),
     t0 = d3.time.month.offset(t1, 0),
     t3 = d3.time.month.offset(t2, 0);
 
@@ -17,7 +17,8 @@ var x = d3.time.scale()
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom")
-    .tickSize(10, 0);
+    .ticks(d3.time.weeks, 1)
+    .tickSize(10, 10);
 
 var xLinear = d3.scale.linear()
     .domain([0, width])
@@ -52,11 +53,31 @@ svg.append("g")
     .attr("x", -10)
     .style("text-anchor", "start")
 
-svg2.append("g")
-    .attr("class", "x axis x-ticks")
-    .call(xAxisPot)
-  .selectAll("text")
-    .style("display", "none")
+// svg2.append("g")
+//     .attr("class", "x axis x-ticks")
+//     .call(xAxisPot)
+//   .selectAll("text")
+//     .style("display", "none")
+
+var format = d3.time.format("%Y-%m");
+
+svg.select('.x')
+    .append("g")
+    .attr("class", "date-start")
+    .append('text')
+    .attr("x", -30)
+    .attr("y", 28)
+    .style("text-anchor", "start")
+    .text(format(t1));
+
+svg.select('.x')
+    .append("g")
+    .attr("class", "date-end")
+    .append('text')
+    .attr("x", width)
+    .attr("y", 28)
+    .style("text-anchor", "start")
+    .text(format(t2));
 
 var ticks = svg.selectAll('.tick');
 
@@ -123,7 +144,7 @@ function addDate(date, text) {
     .attr('class', 'water-drop')
     .attr({d: dropPath})
     .attr('transform', 'translate(-355, ' + (y2 - 28) +') scale(0.5)')
-    .attr('fill', lineColor)
+    .style('fill', lineColor)
     .style("stroke", 'none')
     .on('mouseenter', mo)
     .on('mouseout', mout)
@@ -157,6 +178,6 @@ function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-for (var i = 20; i >= 0; i--) {
+for (var i = 8; i >= 0; i--) {
   r();
 };
