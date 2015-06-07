@@ -13,9 +13,8 @@
 
 .axis line,
 .axis path {
-  /*fill: none;*/
   stroke: #27A9E0;
-  shape-rendering: crispEdges;
+  fill-opacity: 0.5;
 }
 
 .x-ticks line,

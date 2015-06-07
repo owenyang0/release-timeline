@@ -1,4 +1,4 @@
-var margin = {top: 50, right: 30, bottom: 50, left: 30},
+var margin = {top: 200, right: 30, bottom: 50, left: 30},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -32,7 +32,7 @@ var xAxisPot = d3.svg.axis()
 var svg = d3.select(".main").append("svg")
     .attr('class', 'tick-mark')
     .attr("width", width + margin.left + margin.right)
-    .attr("height", 200)
+    .attr("height", 500)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -67,8 +67,8 @@ ticks.select('g')
   .text('Text')
 
 ticks.each(function (t) {
-  d3.select(this).selectAll('line').remove();
-  d3.select(this).append('circle').attr('r', 3).attr('fill', randomColor())
+  // d3.select(this).selectAll('line').remove();
+  // d3.select(this).append('circle').attr('r', 3).attr('fill', randomColor())
 })
 
 function randomColor() {
@@ -80,16 +80,17 @@ function randomColor() {
 }
 
 
-var dropPath = "M22.5 81.2h-1.2000000000000002c-.3 0-.6 0-.9-.1h-.4c-.2 0-.4 0-.5-.1-4.8-.7-9.3-2.9-12.8-6.4-4.2-4.2-6.5-9.6-6.7-15.3v-5.5c0-.2 0-.3.1-.5 0-.2 0-.3.1-.5 0-.2 0-.3.1-.5 0-.1 0-.3.1-.4l.1-.5c0-.1 0-.3.1-.4l.1-.6c0-.1 0-.2.1-.3l.2-.7v-.1c1.6-6.4 5.1-10.7 8.8-15.2 5.8-7.1 12.5-15.3 12.5-34 0 0 0-.1.1-.1h.1s.1 0 .1.1c0 18.7 6.6 26.9 12.3 34.2 4.9 6.2 9.6 12.1 9.6 23.4v1.1c.1 12.3-9.8 22.4-22 22.4zm21.9-24.6v1.1-1.1zm-.2-2.9zm.1.9v.2-.2zm0 1v.5-.5zm.1 3.7z";
+var dropPath = "M747.037,114.424c-0.091,27.814-17.808,50.303-39.568,50.229s-39.329-22.682-39.237-50.497 c0.092-27.815,17.808-50.303,39.568-50.229C729.562,64.001,747.129,86.609,747.037,114.424z"
+
 function addDate(date, text) {
   var xPos = x(date);
 
-  var g = svg2.select('.axis')
+  var g = svg.select('.axis')
     .append('g')
     .attr('class', 'ticks-new')
     .attr("transform", "translate(" + xPos + ",0)");
 
-  var y2 = getRandomArbitrary(50, 300);
+  var y2 = -getRandomArbitrary(60, 300);
 
   function mo() {
     var parent = d3.select(this.parentNode);
@@ -121,7 +122,7 @@ function addDate(date, text) {
     .append('path')
     .attr('class', 'water-drop')
     .attr({d: dropPath})
-    .attr('transform', 'translate(-7, ' + 15 +') scale(0.3)')
+    .attr('transform', 'translate(-355, ' + (y2 - 28) +') scale(0.5)')
     .attr('fill', lineColor)
     .style("stroke", 'none')
     .on('mouseenter', mo)
@@ -130,9 +131,9 @@ function addDate(date, text) {
   g
     .append('line')
     .attr('x1', 0)
-    .attr('y1', 38)
+    .attr('y1', 0)
     .attr('x2', 0)
-    .attr('y2', y2)
+    .attr('y2', y2 + 50)
     .style("stroke-width", 1)
     .style("stroke", lineColor)
     .style("stroke-opacity", .5)
@@ -142,8 +143,8 @@ function addDate(date, text) {
 
   g.append('text')
     .attr('class', 'release-desc')
-    .attr("y", y2 + 20)
-    .attr("x", -10)
+    .attr("y", y2)
+    .attr("x", -20)
     .text(text)
 }
 
@@ -156,6 +157,6 @@ function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-for (var i = 20 - 1; i >= 0; i--) {
+for (var i = 20; i >= 0; i--) {
   r();
 };
